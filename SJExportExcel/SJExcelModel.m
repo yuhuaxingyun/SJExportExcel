@@ -20,7 +20,7 @@
 - (NSArray *)getAllProperties{
     
     u_int count;
-    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    objc_property_t *properties = class_copyPropertyList([SJExcelModel class], &count);
     NSMutableArray *propertiesArray = [NSMutableArray arrayWithCapacity:count];
     for (int i = 0; i<count; i++){
         const char* propertyName =property_getName(properties[i]);
@@ -56,7 +56,7 @@
 + (void)setPropertWithPropertyName:(NSString *)propertyName value:(id)value model:(id)model{
     
     const char * keyChar = [[NSString stringWithFormat:@"_%@",propertyName] UTF8String];
-    Ivar m_name = class_getInstanceVariable(self, keyChar);
+    Ivar m_name = class_getInstanceVariable([SJExcelModel class], keyChar);
     object_setIvar(model, m_name, value);
 }
 
@@ -65,7 +65,7 @@
 */
 + (NSString *)getPropertWithPropertyName:(NSString *)propertyName model:(SJExcelModel *)model{
     const char * keyChar = [[NSString stringWithFormat:@"_%@",propertyName] UTF8String];
-    Ivar m_name = class_getInstanceVariable(self, keyChar);
+    Ivar m_name = class_getInstanceVariable([SJExcelModel class], keyChar);
     NSString *str = (NSString *)object_getIvar(model, m_name);
     return str;
 }

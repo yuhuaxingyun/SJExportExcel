@@ -48,7 +48,7 @@
     SJExcelModel *excelModel = [[SJExcelModel alloc]initWithDictionary:self.muDict error:nil];
     for (NSString *key in [self.muDict allKeys]) {
         NSArray *keysArray = [excelModel getAllProperties];
-        if (![keysArray containsObject:key]) {
+        if ([keysArray containsObject:key]) {
             [SJExcelModel setPropertWithPropertyName:key value:[self.muDict objectForKey:key] model:excelModel];
         }
     }

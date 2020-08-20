@@ -299,9 +299,9 @@ static lxw_format *moneyformat; // 金钱内容的样式
     SJHomeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[SJHomeViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        SJExcelModel *model = [self.muDataArray objectAtIndex:indexPath.row];
-        cell.excelModel = model;
     }
+    SJExcelModel *model = [self.muDataArray objectAtIndex:indexPath.row];
+    cell.excelModel = model;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

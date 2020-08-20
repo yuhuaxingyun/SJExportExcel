@@ -12,6 +12,7 @@
 
 @interface SJHomeViewCell()
 @property (nonatomic,strong) NSArray *keyArray;
+@property (nonatomic,strong) NSMutableArray *allViewsArray;
 @end
 
 @implementation SJHomeViewCell
@@ -26,6 +27,14 @@
 
 
 - (void)setExcelModel:(SJExcelModel *)excelModel{
+    //创建之前先清空数据
+    for (int i=0; i<self.allViewsArray.count;i++) {
+        UIView *view = [self.allViewsArray objectAtIndex:i];
+        [view removeFromSuperview];
+    }
+    [self.allViewsArray removeAllObjects];
+    
+    //创建
     self.keyArray = [excelModel getAllProperties];
     for (int i=0; i<self.keyArray.count; i++) {
         UILabel *titleLabel = [[UILabel alloc]init];
@@ -54,7 +63,16 @@
         titleLabel.text = [NSString stringWithFormat:@"%@",key];
         NSString *infoStr = [SJExcelModel getPropertWithPropertyName:key model:excelModel];
         infoLabel.text = infoStr;
+        [self.allViewsArray addObject:titleLabel];
+        [self.allViewsArray addObject:infoLabel];
     }
+}
+
+- (NSMutableArray *)allViewsArray{
+    if (!_allViewsArray) {
+        _allViewsArray = [NSMutableArray array];
+    }
+    return _allViewsArray;
 }
 
 - (void)awakeFromNib {

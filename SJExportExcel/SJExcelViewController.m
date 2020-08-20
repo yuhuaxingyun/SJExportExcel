@@ -40,8 +40,9 @@
     NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *filePath = [documentPath stringByAppendingPathComponent:@"sks.xlsx"];
     NSURL *url = [NSURL fileURLWithPath:filePath]; // 注意：使用[NSURL URLWithString:filePath]无效
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLRequest *urlRequest = [[NSURLRequest alloc]initWithURL:url];
     [self.webView loadRequest:urlRequest];
+
 }
 
 #pragma mark - 导出excel
