@@ -1,0 +1,23 @@
+//
+//  PrefixHeader.pch
+//  SJExportExcel
+//
+//  Created by mac on 2020/8/18.
+//  Copyright © 2020 songjiang. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "NSString+SJExtend.h"
+
+#import <MJExtension/MJExtension.h>
+#import <JSONModel/JSONModel.h>
+
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width // 屏幕宽度
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height // 屏幕高度
+#define NAV_H (IsBangsScreen ? 88 : 64) // 导航高度
+#define STA_H (IsBangsScreen ? 44 : 20) // 状态栏高度
+#define SBA_H (IsBangsScreen ? 34 : 0) // 底部安全高度
+
+#endif /* PrefixHeader_pch */

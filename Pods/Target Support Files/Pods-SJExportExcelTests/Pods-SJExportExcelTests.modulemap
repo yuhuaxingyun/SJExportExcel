@@ -1,0 +1,6 @@
+framework module Pods_SJExportExcelTests {
+  umbrella header "Pods-SJExportExcelTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

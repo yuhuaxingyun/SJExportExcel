@@ -1,0 +1,6 @@
+framework module Pods_SJExportExcel {
+  umbrella header "Pods-SJExportExcel-umbrella.h"
+
+  export *
+  module * { export * }
+}

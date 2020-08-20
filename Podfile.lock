@@ -1,0 +1,28 @@
+PODS:
+  - JSONModel (1.8.0)
+  - libxlsxwriter (0.9.9)
+  - Masonry (1.1.0)
+  - MJExtension (3.2.2)
+
+DEPENDENCIES:
+  - JSONModel (~> 1.8.0)
+  - libxlsxwriter (~> 0.9.9)
+  - Masonry (~> 1.1.0)
+  - MJExtension (~> 3.2.2)
+
+SPEC REPOS:
+  trunk:
+    - JSONModel
+    - libxlsxwriter
+    - Masonry
+    - MJExtension
+
+SPEC CHECKSUMS:
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  libxlsxwriter: 443dbc2f15093e03be3d21417033426f9ca9f12d
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
+
+PODFILE CHECKSUM: 6ed93fbbadf2925c9653acc3b02dd06409606fd8
+
+COCOAPODS: 1.9.3
