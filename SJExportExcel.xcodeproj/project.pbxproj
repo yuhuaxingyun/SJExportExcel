@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		044881C024EF715200A2F0CA /* SJPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044881BF24EF715200A2F0CA /* SJPropertyModel.m */; };
-		0449B0E824ECB32500453933 /* SJExcelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449B0E724ECB32500453933 /* SJExcelModel.m */; };
-		0449B0EB24ECBFED00453933 /* SJAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449B0EA24ECBFED00453933 /* SJAddViewController.m */; };
-		0449B0EE24ECC64000453933 /* SJAddViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449B0ED24ECC64000453933 /* SJAddViewCell.m */; };
-		0449B0F124ECF66E00453933 /* SJHomeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449B0F024ECF66E00453933 /* SJHomeViewCell.m */; };
 		04531AA724EB7F6F0022CBF7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04531AA624EB7F6F0022CBF7 /* AppDelegate.m */; };
-		04531AAD24EB7F6F0022CBF7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04531AAC24EB7F6F0022CBF7 /* ViewController.m */; };
 		04531AB024EB7F6F0022CBF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04531AAE24EB7F6F0022CBF7 /* Main.storyboard */; };
 		04531AB224EB7F730022CBF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04531AB124EB7F730022CBF7 /* Assets.xcassets */; };
 		04531AB524EB7F730022CBF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04531AB324EB7F730022CBF7 /* LaunchScreen.storyboard */; };
 		04531AB824EB7F730022CBF7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04531AB724EB7F730022CBF7 /* main.m */; };
 		04531AC224EB7F730022CBF7 /* SJExportExcelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04531AC124EB7F730022CBF7 /* SJExportExcelTests.m */; };
 		04531ACD24EB7F730022CBF7 /* SJExportExcelUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04531ACC24EB7F730022CBF7 /* SJExportExcelUITests.m */; };
-		04531ADD24EBB3FC0022CBF7 /* SJExcelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04531ADC24EBB3FC0022CBF7 /* SJExcelViewController.m */; };
-		04B1EB1324EE4F7C00F00674 /* NSString+SJExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B1EB1224EE4F7C00F00674 /* NSString+SJExtend.m */; };
-		04B29B3B24EFCD9000DBE2F2 /* UIViewController+SJExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B29B3A24EFCD9000DBE2F2 /* UIViewController+SJExtend.m */; };
+		04B29B5224EFD1FD00DBE2F2 /* UIViewController+SJExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B29B3F24EFD1FC00DBE2F2 /* UIViewController+SJExtend.m */; };
+		04B29B5324EFD1FD00DBE2F2 /* NSString+SJExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B29B4024EFD1FC00DBE2F2 /* NSString+SJExtend.m */; };
+		04B29B5424EFD1FD00DBE2F2 /* SJExcelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B29B4224EFD1FC00DBE2F2 /* SJExcelViewController.m */; };
+		04B29B5524EFD1FD00DBE2F2 /* SJAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B29B4324EFD1FC00DBE2F2 /* SJAddViewController.m */; };
+		04B29B5624EFD1FD00DBE2F2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B29B4424EFD1FC00DBE2F2 /* ViewController.m */; };
+		04B29B5724EFD1FD00DBE2F2 /* SJAddViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B29B4A24EFD1FC00DBE2F2 /* SJAddViewCell.m */; };
+		04B29B5824EFD1FD00DBE2F2 /* SJHomeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B29B4B24EFD1FC00DBE2F2 /* SJHomeViewCell.m */; };
+		04B29B5924EFD1FD00DBE2F2 /* SJExcelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B29B4E24EFD1FD00DBE2F2 /* SJExcelModel.m */; };
+		04B29B5A24EFD1FD00DBE2F2 /* SJPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B29B5124EFD1FD00DBE2F2 /* SJPropertyModel.m */; };
 		73F900B8A232325153EE755B /* Pods_SJExportExcel_SJExportExcelUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 350D5BECC2F49EE28069BC33 /* Pods_SJExportExcel_SJExportExcelUITests.framework */; };
 		7E2BD5229971393C0C8B6235 /* Pods_SJExportExcelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6ACAC076EB2DC5A31BCE89 /* Pods_SJExportExcelTests.framework */; };
 		F02B47F8B8A0AE22ED48C8FC /* Pods_SJExportExcel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA24C3D1D76910B03F1EF461 /* Pods_SJExportExcel.framework */; };
@@ -46,21 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		044881BE24EF715200A2F0CA /* SJPropertyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJPropertyModel.h; sourceTree = "<group>"; };
-		044881BF24EF715200A2F0CA /* SJPropertyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJPropertyModel.m; sourceTree = "<group>"; };
-		0449B0E624ECB32500453933 /* SJExcelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJExcelModel.h; sourceTree = "<group>"; };
-		0449B0E724ECB32500453933 /* SJExcelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJExcelModel.m; sourceTree = "<group>"; };
-		0449B0E924ECBFED00453933 /* SJAddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJAddViewController.h; sourceTree = "<group>"; };
-		0449B0EA24ECBFED00453933 /* SJAddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJAddViewController.m; sourceTree = "<group>"; };
-		0449B0EC24ECC64000453933 /* SJAddViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJAddViewCell.h; sourceTree = "<group>"; };
-		0449B0ED24ECC64000453933 /* SJAddViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJAddViewCell.m; sourceTree = "<group>"; };
-		0449B0EF24ECF66E00453933 /* SJHomeViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJHomeViewCell.h; sourceTree = "<group>"; };
-		0449B0F024ECF66E00453933 /* SJHomeViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJHomeViewCell.m; sourceTree = "<group>"; };
 		04531AA224EB7F6E0022CBF7 /* SJExportExcel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SJExportExcel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04531AA524EB7F6F0022CBF7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04531AA624EB7F6F0022CBF7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		04531AAB24EB7F6F0022CBF7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		04531AAC24EB7F6F0022CBF7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		04531AAF24EB7F6F0022CBF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04531AB124EB7F730022CBF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04531AB424EB7F730022CBF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,12 +61,24 @@
 		04531ACC24EB7F730022CBF7 /* SJExportExcelUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJExportExcelUITests.m; sourceTree = "<group>"; };
 		04531ACE24EB7F730022CBF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04531ADA24EBAB080022CBF7 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		04531ADB24EBB3FC0022CBF7 /* SJExcelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJExcelViewController.h; sourceTree = "<group>"; };
-		04531ADC24EBB3FC0022CBF7 /* SJExcelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJExcelViewController.m; sourceTree = "<group>"; };
-		04B1EB1124EE4F7C00F00674 /* NSString+SJExtend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+SJExtend.h"; sourceTree = "<group>"; };
-		04B1EB1224EE4F7C00F00674 /* NSString+SJExtend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+SJExtend.m"; sourceTree = "<group>"; };
-		04B29B3924EFCD9000DBE2F2 /* UIViewController+SJExtend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SJExtend.h"; sourceTree = "<group>"; };
-		04B29B3A24EFCD9000DBE2F2 /* UIViewController+SJExtend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SJExtend.m"; sourceTree = "<group>"; };
+		04B29B3D24EFD1FC00DBE2F2 /* UIViewController+SJExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SJExtend.h"; sourceTree = "<group>"; };
+		04B29B3E24EFD1FC00DBE2F2 /* NSString+SJExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SJExtend.h"; sourceTree = "<group>"; };
+		04B29B3F24EFD1FC00DBE2F2 /* UIViewController+SJExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SJExtend.m"; sourceTree = "<group>"; };
+		04B29B4024EFD1FC00DBE2F2 /* NSString+SJExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SJExtend.m"; sourceTree = "<group>"; };
+		04B29B4224EFD1FC00DBE2F2 /* SJExcelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJExcelViewController.m; sourceTree = "<group>"; };
+		04B29B4324EFD1FC00DBE2F2 /* SJAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJAddViewController.m; sourceTree = "<group>"; };
+		04B29B4424EFD1FC00DBE2F2 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		04B29B4524EFD1FC00DBE2F2 /* SJExcelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJExcelViewController.h; sourceTree = "<group>"; };
+		04B29B4624EFD1FC00DBE2F2 /* SJAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJAddViewController.h; sourceTree = "<group>"; };
+		04B29B4724EFD1FC00DBE2F2 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		04B29B4924EFD1FC00DBE2F2 /* SJHomeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJHomeViewCell.h; sourceTree = "<group>"; };
+		04B29B4A24EFD1FC00DBE2F2 /* SJAddViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJAddViewCell.m; sourceTree = "<group>"; };
+		04B29B4B24EFD1FC00DBE2F2 /* SJHomeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHomeViewCell.m; sourceTree = "<group>"; };
+		04B29B4C24EFD1FC00DBE2F2 /* SJAddViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJAddViewCell.h; sourceTree = "<group>"; };
+		04B29B4E24EFD1FD00DBE2F2 /* SJExcelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJExcelModel.m; sourceTree = "<group>"; };
+		04B29B4F24EFD1FD00DBE2F2 /* SJPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPropertyModel.h; sourceTree = "<group>"; };
+		04B29B5024EFD1FD00DBE2F2 /* SJExcelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJExcelModel.h; sourceTree = "<group>"; };
+		04B29B5124EFD1FD00DBE2F2 /* SJPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPropertyModel.m; sourceTree = "<group>"; };
 		22FA26859F282A33037BAC63 /* Pods-SJExportExcelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SJExportExcelTests.release.xcconfig"; path = "Target Support Files/Pods-SJExportExcelTests/Pods-SJExportExcelTests.release.xcconfig"; sourceTree = "<group>"; };
 		350D5BECC2F49EE28069BC33 /* Pods_SJExportExcel_SJExportExcelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SJExportExcel_SJExportExcelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C2504DBC1FB0C668FEB3514 /* Pods-SJExportExcel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SJExportExcel.debug.xcconfig"; path = "Target Support Files/Pods-SJExportExcel/Pods-SJExportExcel.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,32 +143,18 @@
 		04531AA424EB7F6F0022CBF7 /* SJExportExcel */ = {
 			isa = PBXGroup;
 			children = (
+				04B29B3C24EFD1FC00DBE2F2 /* Category */,
+				04B29B4124EFD1FC00DBE2F2 /* Controller */,
+				04B29B4D24EFD1FD00DBE2F2 /* Model */,
+				04B29B4824EFD1FC00DBE2F2 /* View */,
 				04531AA524EB7F6F0022CBF7 /* AppDelegate.h */,
 				04531AA624EB7F6F0022CBF7 /* AppDelegate.m */,
-				04531AAB24EB7F6F0022CBF7 /* ViewController.h */,
-				04531AAC24EB7F6F0022CBF7 /* ViewController.m */,
-				0449B0E924ECBFED00453933 /* SJAddViewController.h */,
-				0449B0EA24ECBFED00453933 /* SJAddViewController.m */,
-				04531ADB24EBB3FC0022CBF7 /* SJExcelViewController.h */,
-				04531ADC24EBB3FC0022CBF7 /* SJExcelViewController.m */,
 				04531AAE24EB7F6F0022CBF7 /* Main.storyboard */,
 				04531AB124EB7F730022CBF7 /* Assets.xcassets */,
 				04531AB324EB7F730022CBF7 /* LaunchScreen.storyboard */,
 				04531AB624EB7F730022CBF7 /* Info.plist */,
 				04531AB724EB7F730022CBF7 /* main.m */,
 				04531ADA24EBAB080022CBF7 /* PrefixHeader.pch */,
-				0449B0E624ECB32500453933 /* SJExcelModel.h */,
-				0449B0E724ECB32500453933 /* SJExcelModel.m */,
-				0449B0EC24ECC64000453933 /* SJAddViewCell.h */,
-				0449B0ED24ECC64000453933 /* SJAddViewCell.m */,
-				0449B0EF24ECF66E00453933 /* SJHomeViewCell.h */,
-				0449B0F024ECF66E00453933 /* SJHomeViewCell.m */,
-				04B1EB1124EE4F7C00F00674 /* NSString+SJExtend.h */,
-				04B1EB1224EE4F7C00F00674 /* NSString+SJExtend.m */,
-				044881BE24EF715200A2F0CA /* SJPropertyModel.h */,
-				044881BF24EF715200A2F0CA /* SJPropertyModel.m */,
-				04B29B3924EFCD9000DBE2F2 /* UIViewController+SJExtend.h */,
-				04B29B3A24EFCD9000DBE2F2 /* UIViewController+SJExtend.m */,
 			);
 			path = SJExportExcel;
 			sourceTree = "<group>";
@@ -189,6 +175,52 @@
 				04531ACE24EB7F730022CBF7 /* Info.plist */,
 			);
 			path = SJExportExcelUITests;
+			sourceTree = "<group>";
+		};
+		04B29B3C24EFD1FC00DBE2F2 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				04B29B3D24EFD1FC00DBE2F2 /* UIViewController+SJExtend.h */,
+				04B29B3E24EFD1FC00DBE2F2 /* NSString+SJExtend.h */,
+				04B29B3F24EFD1FC00DBE2F2 /* UIViewController+SJExtend.m */,
+				04B29B4024EFD1FC00DBE2F2 /* NSString+SJExtend.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		04B29B4124EFD1FC00DBE2F2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04B29B4224EFD1FC00DBE2F2 /* SJExcelViewController.m */,
+				04B29B4324EFD1FC00DBE2F2 /* SJAddViewController.m */,
+				04B29B4424EFD1FC00DBE2F2 /* ViewController.m */,
+				04B29B4524EFD1FC00DBE2F2 /* SJExcelViewController.h */,
+				04B29B4624EFD1FC00DBE2F2 /* SJAddViewController.h */,
+				04B29B4724EFD1FC00DBE2F2 /* ViewController.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04B29B4824EFD1FC00DBE2F2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04B29B4924EFD1FC00DBE2F2 /* SJHomeViewCell.h */,
+				04B29B4A24EFD1FC00DBE2F2 /* SJAddViewCell.m */,
+				04B29B4B24EFD1FC00DBE2F2 /* SJHomeViewCell.m */,
+				04B29B4C24EFD1FC00DBE2F2 /* SJAddViewCell.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04B29B4D24EFD1FD00DBE2F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04B29B4E24EFD1FD00DBE2F2 /* SJExcelModel.m */,
+				04B29B4F24EFD1FD00DBE2F2 /* SJPropertyModel.h */,
+				04B29B5024EFD1FD00DBE2F2 /* SJExcelModel.h */,
+				04B29B5124EFD1FD00DBE2F2 /* SJPropertyModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6617908AA6EF976F3BF79549 /* Frameworks */ = {
@@ -452,17 +484,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04531AAD24EB7F6F0022CBF7 /* ViewController.m in Sources */,
-				044881C024EF715200A2F0CA /* SJPropertyModel.m in Sources */,
+				04B29B5A24EFD1FD00DBE2F2 /* SJPropertyModel.m in Sources */,
+				04B29B5624EFD1FD00DBE2F2 /* ViewController.m in Sources */,
+				04B29B5424EFD1FD00DBE2F2 /* SJExcelViewController.m in Sources */,
+				04B29B5924EFD1FD00DBE2F2 /* SJExcelModel.m in Sources */,
+				04B29B5824EFD1FD00DBE2F2 /* SJHomeViewCell.m in Sources */,
 				04531AA724EB7F6F0022CBF7 /* AppDelegate.m in Sources */,
-				0449B0E824ECB32500453933 /* SJExcelModel.m in Sources */,
+				04B29B5724EFD1FD00DBE2F2 /* SJAddViewCell.m in Sources */,
+				04B29B5224EFD1FD00DBE2F2 /* UIViewController+SJExtend.m in Sources */,
+				04B29B5324EFD1FD00DBE2F2 /* NSString+SJExtend.m in Sources */,
 				04531AB824EB7F730022CBF7 /* main.m in Sources */,
-				04B1EB1324EE4F7C00F00674 /* NSString+SJExtend.m in Sources */,
-				0449B0F124ECF66E00453933 /* SJHomeViewCell.m in Sources */,
-				04531ADD24EBB3FC0022CBF7 /* SJExcelViewController.m in Sources */,
-				0449B0EE24ECC64000453933 /* SJAddViewCell.m in Sources */,
-				0449B0EB24ECBFED00453933 /* SJAddViewController.m in Sources */,
-				04B29B3B24EFCD9000DBE2F2 /* UIViewController+SJExtend.m in Sources */,
+				04B29B5524EFD1FD00DBE2F2 /* SJAddViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
