@@ -14,6 +14,7 @@
 #import "SJAddViewController.h"
 #import "SJHomeViewCell.h"
 #import <objc/runtime.h>
+#import "SJPropertyModel.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UIButton *editButton;
@@ -23,6 +24,7 @@
 @property (nonatomic, assign) int rowNum; // 已加载到的行数
 @property (nonatomic,strong) UIButton *footerBtn;
 //@property (nonatomic,strong) SJExcelModel *excelModel;
+@property (nonatomic,strong) NSMutableArray *propertyArray;
 @end
 
 static lxw_workbook  *workbook;
@@ -41,23 +43,18 @@ static lxw_format *moneyformat; // 金钱内容的样式
 
 - (void)initData{
 
-    for (int i=0 ; i<2; i++) {
-//        NSMutableDictionary *muDict = [NSMutableDictionary dictionary];
-//        [muDict setObject:[NSString stringWithFormat:@"%d",i] forKey:@"ID"];
-//        [muDict setObject:@"2020-08-19" forKey:@"time"];
-//        [muDict setObject:@"张三" forKey:@"name"];
-//        [muDict setObject:@"15829319987" forKey:@"phone"];
-//        [self.muDataArray addObject:muDict];
-
+    for (int i=1 ; i<2; i++) {
+        SJPropertyModel *propertyModel = [[SJPropertyModel alloc]init];
+        propertyModel.propertyName = @"ID";
+        propertyModel.header = @"ID";
+        propertyModel.connect = [NSString stringWithFormat:@"%d",1];
+        propertyModel.boardType = 1;
+        
+        NSMutableArray *propertyArray = [NSMutableArray arrayWithObject:propertyModel];
+        
         SJExcelModel *model = [[SJExcelModel alloc]init];
-        model.ID = [NSString stringWithFormat:@"%d",i];
-        model.time = @"2020-08-19";
-        model.name = @"张三";
-        model.phone = @"12345678910";
-        model.money = @"5.00";
-        
+        model.propertyName = propertyArray;
         [self.muDataArray addObject:model];
-        
     }
 }
 
@@ -83,6 +80,8 @@ static lxw_format *moneyformat; // 金钱内容的样式
     self.navigationItem.rightBarButtonItems = @[editItem,addItem];
     
     [self.view addSubview:self.tableView];
+    
+    [self setEditStyle:self.muDataArray];
 }
 
 - (void)saveToFileWithString:(NSString *)str{
@@ -117,34 +116,13 @@ static lxw_format *moneyformat; // 金钱内容的样式
 }
 
 - (void)addColumn{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入标题和内容" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入标头和表头对应的值" preferredStyle:UIAlertControllerStyleAlert];
                                           
     [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        UITextField *titleTextField = alertController.textFields.firstObject;
-        UITextField *connectTextField = alertController.textFields.lastObject;
-        NSLog(@"%@,%@",titleTextField.text,connectTextField.text);
-        
-        //添加属性
-        NSString *pinyin = [titleTextField.text transFormChinese];
-        [SJExcelModel addPropertWithPropertyName:pinyin];
-        
-        unsigned int outCount, i;
-         objc_property_t *properties = class_copyPropertyList([SJExcelModel class], &outCount);
-         for (i = 0; i < outCount; i++) {
-             objc_property_t property = properties[i];
-             fprintf(stdout, "mytest %s %s\n", property_getName(property), property_getAttributes(property));
-         }
-
-
-        for (int i=0; i<self.muDataArray.count; i++) {
-            SJExcelModel *model = [self.muDataArray objectAtIndex:i];
-            //属性赋值或修改
-            [SJExcelModel setPropertWithPropertyName:pinyin value:connectTextField.text model:model];
-            [self.muDataArray removeObjectAtIndex:i];
-            [self.muDataArray insertObject:model atIndex:i];
-        }
-
-        [self.tableView reloadData];
+        UITextField *headerTextField = alertController.textFields.firstObject;
+        UITextField *connectTextField = [alertController.textFields objectAtIndex:1];
+        NSLog(@"%@,%@",headerTextField.text,connectTextField.text);
+        [self alertTipsWithHeaderText:headerTextField.text connectText:connectTextField.text];
     }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -152,10 +130,11 @@ static lxw_format *moneyformat; // 金钱内容的样式
     }]];
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = @"请输入标题";
+        textField.placeholder = @"请输入表头";
+
     }];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = @"请输入内容";
+        textField.placeholder = @"请输入表头对应的值(可选)";
         
     }];
   
@@ -164,20 +143,25 @@ static lxw_format *moneyformat; // 金钱内容的样式
 }
 
 - (void)addRows{
-    SJAddViewController *addVC = [[SJAddViewController alloc]init];
-    addVC.muDataArray = self.muDataArray;
-    addVC.addDataBlock = ^(SJExcelModel * _Nonnull model) {
-        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-         NSInteger row = self.muDataArray.count;
-         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-         [indexPaths addObject: indexPath];
-         //必须向tableView的数据源数组中相应的添加一条数据
-         [self.muDataArray addObject:model];
-         [self.tableView beginUpdates];
-         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-         [self.tableView endUpdates];
-    };
-    [self.navigationController pushViewController:addVC animated:YES];
+    if (self.muDataArray.count>0) {
+        SJAddViewController *addVC = [[SJAddViewController alloc]init];
+        addVC.muDataArray = self.muDataArray;
+        addVC.addDataBlock = ^(SJExcelModel * _Nonnull model) {
+            NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+             NSInteger row = self.muDataArray.count;
+             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+             [indexPaths addObject: indexPath];
+             //必须向tableView的数据源数组中相应的添加一条数据
+             [self.muDataArray addObject:model];
+             [self.tableView beginUpdates];
+             [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+             [self.tableView endUpdates];
+        };
+        [self.navigationController pushViewController:addVC animated:YES];
+    }else{
+        [self alertControllerWithTitle:@"温馨提示" message:@"请先添加表头"];
+    }
+
 }
 
 - (void)editClick:(UIButton *)button{
@@ -195,6 +179,57 @@ static lxw_format *moneyformat; // 金钱内容的样式
     }
     
     [self.tableView setEditing:!self.tableView.editing animated:YES];
+}
+
+- (void)setEditStyle:(NSMutableArray *)dataArray{
+    if (dataArray.count > 0) {
+        self.editButton.userInteractionEnabled = YES;
+        [self.editButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }else{
+        self.editButton.userInteractionEnabled = NO;
+        [self.editButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    }
+}
+
+- (void)alertTipsWithHeaderText:(NSString *)headerText connectText:(NSString *)connectText{
+    if ([headerText isEqualToString:@""]||headerText == nil) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"表头不能为空" preferredStyle:UIAlertControllerStyleAlert];
+                                              
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }else{
+        //添加属性
+        NSString *pinyin = [headerText transFormChinese];
+        
+        SJPropertyModel *propertyModel = [[SJPropertyModel alloc]init];
+        propertyModel.header = headerText;
+        propertyModel.connect = connectText;
+        propertyModel.boardType = 1;
+        propertyModel.propertyName = pinyin;
+        if (self.muDataArray.count>0) {
+            NSMutableArray *dataArray = [self.muDataArray copy];
+            [self.muDataArray removeAllObjects];
+            for (int i=0; i<dataArray.count; i++) {
+                SJExcelModel *excelModel = [dataArray objectAtIndex:i];
+                NSMutableArray *muArray = [NSMutableArray arrayWithArray:excelModel.propertyName];
+                [muArray addObject:propertyModel];
+                excelModel.propertyName = muArray;
+                [self.muDataArray addObject:excelModel];
+            }
+        }else{
+            SJExcelModel *excelModel = [[SJExcelModel alloc]init];
+             NSMutableArray *muArray = [NSMutableArray arrayWithArray:excelModel.propertyName];
+             [muArray addObject:propertyModel];
+             excelModel.propertyName = muArray;
+             [self.muDataArray addObject:excelModel];
+        }
+        [self setEditStyle:self.muDataArray];
+        [self.tableView reloadData];
+    }
+
 }
 
 #pragma mark - 生成Excel文件保存到沙盒
@@ -251,43 +286,22 @@ static lxw_format *moneyformat; // 金钱内容的样式
 }
 
 - (void)setupFormContent:(NSArray *)dataArray{
+    
     SJExcelModel *model = [dataArray lastObject];
-    NSArray *keysArray = [model getAllProperties];
-    for (int i=0; i<keysArray.count; i++) {
+    for (int i=0; i<model.propertyName.count; i++) {
+        SJPropertyModel *propertyModel = [model.propertyName objectAtIndex:i];
         worksheet_set_column(worksheet, i, i, 30, NULL); // D列宽度（0:起始列 0:终始列 25:列宽）
-        worksheet_write_string(worksheet, self.rowNum, i, [[keysArray objectAtIndex:i] cStringUsingEncoding:NSUTF8StringEncoding], contentformat);
+        worksheet_write_string(worksheet, self.rowNum, i, [propertyModel.header cStringUsingEncoding:NSUTF8StringEncoding], contentformat);
     }
     
     for (int j = 0; j < dataArray.count; j++) {
         ++self.rowNum;
-        SJExcelModel *model = dataArray[j];
-        for (int m=0; m<keysArray.count; m++) {
-            NSString *key = [keysArray objectAtIndex:m];
-            NSString *value = [SJExcelModel getPropertWithPropertyName:key model:model];
-            worksheet_write_string(worksheet, self.rowNum, m, [value cStringUsingEncoding:NSUTF8StringEncoding], contentformat);
+        SJExcelModel *model = [dataArray objectAtIndex:j];
+        for (int m=0; m<model.propertyName.count; m++) {
+            SJPropertyModel *propertyModel = [model.propertyName objectAtIndex:m];
+            worksheet_write_string(worksheet, self.rowNum, m, [propertyModel.connect cStringUsingEncoding:NSUTF8StringEncoding], contentformat);
         }
     }
-    
-//    // 设置列宽
-//    worksheet_set_column(worksheet, 0, 0, 25, NULL); // D列宽度（0:起始列 0:终始列 25:列宽）
-//    worksheet_set_column(worksheet, 1, 2, 35, NULL); // B、C两列宽度（1:起始列 2:终始列 30:列宽）
-//    worksheet_set_column(worksheet, 3, 3, 25, NULL); // D列宽度（3:起始列 3:终始列 25:列宽）
-//    worksheet_set_column(worksheet, 4, 4, 25, NULL); // D列宽度（4:起始列 4:终始列 25:列宽）
-//    worksheet_write_string(worksheet, self.rowNum, 0, "ID", contentformat);
-//    worksheet_write_string(worksheet, self.rowNum, 1, "日期", contentformat);
-//    worksheet_write_string(worksheet, self.rowNum, 2, "姓名", contentformat);
-//    worksheet_write_string(worksheet, self.rowNum, 3, "电话", contentformat);
-//    worksheet_write_string(worksheet, self.rowNum, 4, "金额", contentformat);
-//
-//    for (int i = 0; i < dataArray.count; i++) {
-//        SJExcelModel *model = dataArray[i];
-//        worksheet_write_string(worksheet, ++self.rowNum, 0, [model.ID cStringUsingEncoding:NSUTF8StringEncoding], contentformat);
-//        worksheet_write_string(worksheet, self.rowNum, 1, [model.time cStringUsingEncoding:NSUTF8StringEncoding], contentformat);
-//        worksheet_write_string(worksheet, self.rowNum, 2,  [model.name cStringUsingEncoding:NSUTF8StringEncoding], contentformat);
-//        worksheet_write_string(worksheet, self.rowNum, 3,  [model.phone cStringUsingEncoding:NSUTF8StringEncoding], contentformat);
-//        worksheet_write_number(worksheet, self.rowNum, 4, [model.money doubleValue], moneyformat);
-//    }
-//
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -307,8 +321,7 @@ static lxw_format *moneyformat; // 金钱内容的样式
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     SJExcelModel *model = [self.muDataArray objectAtIndex:indexPath.row];
-    NSArray *keyArray = [model getAllProperties];
-    return keyArray.count*20 + 20;
+    return model.propertyName.count*20 + 20;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -333,8 +346,14 @@ static lxw_format *moneyformat; // 金钱内容的样式
     footerBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     footerBtn.layer.cornerRadius = 25;
     footerBtn.layer.masksToBounds  = YES;
-    footerBtn.backgroundColor = [UIColor purpleColor];
-    footerBtn.userInteractionEnabled = YES;
+    if (self.muDataArray.count>0) {
+        footerBtn.backgroundColor = [UIColor purpleColor];
+        footerBtn.userInteractionEnabled = YES;
+    }else{
+        footerBtn.backgroundColor = [UIColor grayColor];
+        footerBtn.userInteractionEnabled = NO;
+    }
+    
     [footerBtn addTarget:self action:@selector(createExcelFormClick) forControlEvents:UIControlEventTouchUpInside];
     self.footerBtn = footerBtn;
     [footerView addSubview:footerBtn];
@@ -351,7 +370,7 @@ static lxw_format *moneyformat; // 金钱内容的样式
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-     //判断编辑样式（删除或插入）
+     //判断编辑样式（删除）
      if (editingStyle == UITableViewCellEditingStyleDelete){
       //必须要先删除数据源
 
@@ -361,26 +380,6 @@ static lxw_format *moneyformat; // 金钱内容的样式
          [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
           //删除完后要刷新tableView
          [self.tableView endUpdates];
-        
-     }else if (editingStyle == UITableViewCellEditingStyleInsert){//插入模式
-         
-         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-         NSInteger row = self.muDataArray.count;
-         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-         [indexPaths addObject: indexPath];
-         //必须向tableView的数据源数组中相应的添加一条数据
-         NSDictionary *dict = @{
-                               @"time": @"2020-06-04",
-                               @"name": @"李四",
-                               @"phone": @"12345678910", // 测试尾数是0的场景
-                               @"money": @"5.00" // 测试尾数是.00的场景
-                               };
-         [self.muDataArray addObject:dict];
-         [self.tableView beginUpdates];
-         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-         [self.tableView endUpdates];
-         
-         
     }
 }
 
@@ -398,7 +397,6 @@ static lxw_format *moneyformat; // 金钱内容的样式
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,ScreenWidth,ScreenHeight) style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
-//        tableView.allowsMultipleSelectionDuringEditing = YES;
         _tableView = tableView;
     }
     return _tableView;
@@ -409,6 +407,13 @@ static lxw_format *moneyformat; // 金钱内容的样式
         _muDataArray = [NSMutableArray array];
     }
     return _muDataArray;
+}
+
+- (NSMutableArray *)propertyArray{
+    if (!_propertyArray) {
+        _propertyArray = [NSMutableArray array];
+    }
+    return _propertyArray;
 }
 
 @end

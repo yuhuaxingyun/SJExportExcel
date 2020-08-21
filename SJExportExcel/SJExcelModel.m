@@ -8,14 +8,16 @@
 
 #import "SJExcelModel.h"
 #import <objc/runtime.h>
-
+#import <objc/message.h>
 @interface SJExcelModel()
 
 @end
 @implementation SJExcelModel
+
 + (BOOL)propertyIsOptional:(NSString *)propertyName{
     return YES;
 }
+
 //获取对象的所有属性
 - (NSArray *)getAllProperties{
     

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SJPropertyModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,9 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SJAddViewCell : UITableViewCell
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) UITextField *infoField;
-@property (nonatomic,copy) NSString *key;
-@property (nonatomic,copy) NSString *value;
 @property (nonatomic,weak) id<SJAddViewCellDelegate> delegate;
+@property (nonatomic,strong) SJPropertyModel *propertyModel;
 @end
 
 NS_ASSUME_NONNULL_END

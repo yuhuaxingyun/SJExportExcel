@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SJPropertyModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SJExcelModel : JSONModel
-@property (nonatomic,copy) NSString *ID;
-@property (nonatomic,copy) NSString *time;
-@property (nonatomic,copy) NSString *name;
-@property (nonatomic,copy) NSString *phone;
-@property (nonatomic,copy) NSString *money;
+@property (nonatomic,strong) NSMutableArray<SJPropertyModel *> *propertyName;
+
+//************* 使用 runtime 创建属性 *************//
+
 /*
  * 获取对象的所有属性
  */

@@ -9,6 +9,7 @@
 #import "SJHomeViewCell.h"
 #import <objc/runtime.h>
 #import <Masonry.h>
+#import "SJPropertyModel.h"
 
 @interface SJHomeViewCell()
 @property (nonatomic,strong) NSArray *keyArray;
@@ -27,6 +28,7 @@
 
 
 - (void)setExcelModel:(SJExcelModel *)excelModel{
+    _excelModel = excelModel;
     //创建之前先清空数据
     for (int i=0; i<self.allViewsArray.count;i++) {
         UIView *view = [self.allViewsArray objectAtIndex:i];
@@ -35,8 +37,8 @@
     [self.allViewsArray removeAllObjects];
     
     //创建
-    self.keyArray = [excelModel getAllProperties];
-    for (int i=0; i<self.keyArray.count; i++) {
+    for (int i=0; i<excelModel.propertyName.count; i++) {
+        
         UILabel *titleLabel = [[UILabel alloc]init];
         titleLabel.textColor = [UIColor blackColor];
         titleLabel.font = [UIFont systemFontOfSize:15];
@@ -59,10 +61,10 @@
             make.height.mas_equalTo(20);
         }];
         
-        NSString *key = [self.keyArray objectAtIndex:i];
-        titleLabel.text = [NSString stringWithFormat:@"%@",key];
-        NSString *infoStr = [SJExcelModel getPropertWithPropertyName:key model:excelModel];
-        infoLabel.text = infoStr;
+        SJPropertyModel *propertyModel = [excelModel.propertyName objectAtIndex:i];
+        titleLabel.text = [NSString stringWithFormat:@"%@",propertyModel.header];
+        infoLabel.text = propertyModel.connect;
+        
         [self.allViewsArray addObject:titleLabel];
         [self.allViewsArray addObject:infoLabel];
     }

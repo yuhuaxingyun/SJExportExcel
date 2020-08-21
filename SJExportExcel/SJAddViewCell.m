@@ -40,13 +40,11 @@
         make.height.mas_equalTo(self.contentView.mas_height);
     }];
 }
-
-- (void)setKey:(NSString *)key{
-    self.titleLabel.text = key;
-}
-
-- (void)setValue:(NSString *)value{
-    self.infoField.text = value;
+- (void)setPropertyModel:(SJPropertyModel *)propertyModel{
+    
+    _propertyModel = propertyModel;
+    self.titleLabel.text = _propertyModel.header;
+    self.infoField.text = _propertyModel.connect;
 }
 
 - (void)textFieldDidChange:(UITextField *)textField{
@@ -73,7 +71,7 @@
         infoField.textColor = [UIColor blackColor];
         infoField.delegate = self;
         [infoField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        infoField.placeholder = @"请输入值";
+        infoField.placeholder = @"请输入表头对应的值";
         _infoField = infoField;
     }
     return _infoField;
