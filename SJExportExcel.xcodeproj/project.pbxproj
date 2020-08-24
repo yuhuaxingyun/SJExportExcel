@@ -191,12 +191,12 @@
 		04B29B4124EFD1FC00DBE2F2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				04B29B4224EFD1FC00DBE2F2 /* SJExcelViewController.m */,
+				04B29B4624EFD1FC00DBE2F2 /* SJAddViewController.h */,
 				04B29B4324EFD1FC00DBE2F2 /* SJAddViewController.m */,
+				04B29B4724EFD1FC00DBE2F2 /* ViewController.h */,
 				04B29B4424EFD1FC00DBE2F2 /* ViewController.m */,
 				04B29B4524EFD1FC00DBE2F2 /* SJExcelViewController.h */,
-				04B29B4624EFD1FC00DBE2F2 /* SJAddViewController.h */,
-				04B29B4724EFD1FC00DBE2F2 /* ViewController.h */,
+				04B29B4224EFD1FC00DBE2F2 /* SJExcelViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

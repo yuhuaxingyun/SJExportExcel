@@ -116,7 +116,7 @@ static lxw_format *moneyformat; // 金钱内容的样式
 }
 
 - (void)addColumn{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入标头和表头对应的值" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入表头和表头对应的值" preferredStyle:UIAlertControllerStyleAlert];
                                           
     [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *headerTextField = alertController.textFields.firstObject;
@@ -181,6 +181,20 @@ static lxw_format *moneyformat; // 金钱内容的样式
     [self.tableView setEditing:!self.tableView.editing animated:YES];
 }
 
+- (void)setStyle:(BOOL)style{
+    if (style) {
+        self.editButton.userInteractionEnabled = YES;
+        [self.editButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        self.footerBtn.userInteractionEnabled = YES;
+        self.footerBtn.backgroundColor = [UIColor purpleColor];
+    }else{
+        self.editButton.userInteractionEnabled = NO;
+        [self.editButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        self.footerBtn.userInteractionEnabled = NO;
+        self.footerBtn.backgroundColor = [UIColor grayColor];
+    }
+}
+
 - (void)setEditStyle:(NSMutableArray *)dataArray{
     if (dataArray.count > 0) {
         self.editButton.userInteractionEnabled = YES;
@@ -228,6 +242,7 @@ static lxw_format *moneyformat; // 金钱内容的样式
         }
         [self setEditStyle:self.muDataArray];
         [self.tableView reloadData];
+        
     }
 
 }
@@ -346,17 +361,15 @@ static lxw_format *moneyformat; // 金钱内容的样式
     footerBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     footerBtn.layer.cornerRadius = 25;
     footerBtn.layer.masksToBounds  = YES;
-    if (self.muDataArray.count>0) {
-        footerBtn.backgroundColor = [UIColor purpleColor];
-        footerBtn.userInteractionEnabled = YES;
-    }else{
-        footerBtn.backgroundColor = [UIColor grayColor];
-        footerBtn.userInteractionEnabled = NO;
-    }
-    
     [footerBtn addTarget:self action:@selector(createExcelFormClick) forControlEvents:UIControlEventTouchUpInside];
     self.footerBtn = footerBtn;
     [footerView addSubview:footerBtn];
+    
+    if (self.muDataArray.count>0) {
+        [self setStyle:YES];
+    }else{
+        [self setStyle:NO];
+    }
     
     return footerView;
 }
@@ -380,6 +393,13 @@ static lxw_format *moneyformat; // 金钱内容的样式
          [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
           //删除完后要刷新tableView
          [self.tableView endUpdates];
+         
+         //设置按钮状态
+         if (self.muDataArray.count>0) {
+             [self setStyle:YES];
+         }else{
+             [self setStyle:NO];
+         }
     }
 }
 
@@ -389,6 +409,19 @@ static lxw_format *moneyformat; // 金钱内容的样式
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
     [self.muDataArray exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (!self.tableView.editing) {
+        SJAddViewController *addVC = [[SJAddViewController alloc]init];
+        addVC.muDataArray = self.muDataArray;
+        addVC.addDataBlock = ^(SJExcelModel * _Nonnull model) {
+            [self.muDataArray removeObjectAtIndex:indexPath.row];
+            [self.muDataArray insertObject:model atIndex:indexPath.row];
+            [self.tableView reloadData];
+        };
+        [self.navigationController pushViewController:addVC animated:YES];
+    }
 }
 
 #pragma mark - getter
